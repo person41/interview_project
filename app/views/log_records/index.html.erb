@@ -21,3 +21,21 @@
     <% end %>
   </tbody>
 </table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>COUNT</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @requests_by_year.each do |req| %>
+      <tr>
+        <td><%= req.year %></td>
+        <td><%= req.request_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
