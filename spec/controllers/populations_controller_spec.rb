@@ -35,5 +35,10 @@ RSpec.describe PopulationsController, type: :controller do
       get :show, params: { year: year }
       expect(response.body).not_to match /for: <script>alert/im
     end
+
+    it "records user's answer and query" do
+      year = "1945"
+      expect { get(:show, params: { year: year }) }.to change { LogRecord.count }.by(1)
+    end
   end
 end
