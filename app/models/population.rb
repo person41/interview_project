@@ -4,10 +4,15 @@ class Population < ApplicationRecord
     Population.all.map(&:year).min.year
   end
 
+  def self.max_year
+    Population.maximum("year").year
+  end
+
   def self.get(year)
     year = year.to_i
 
     return 0 if year < min_year
+    year = max_year if year >= max_year
 
     pop = nil
     until pop
