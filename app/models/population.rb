@@ -1,4 +1,6 @@
 class Population < ApplicationRecord
+  GROWTH_RATE_PER_YEAR = 1.09
+  MAX_YEAR = 2500
 
   def self.min_year
     Population.minimum("year").year
@@ -12,7 +14,9 @@ class Population < ApplicationRecord
     year = year.to_i
 
     return 0 if year < min_year
-    year = max_year if year >= max_year
+    year = MAX_YEAR if year > MAX_YEAR
+
+    return future_popoulation_exponential_growth(year, max_year) if year > max_year
 
     population_record = Population.find_by_year(Date.new(year))
     if population_record.present?
@@ -23,6 +27,11 @@ class Population < ApplicationRecord
   end
 
   private
+
+  def self.future_popoulation_exponential_growth(year, base_year)
+    base_year_record = Population.find_by_year(Date.new(base_year))
+    (GROWTH_RATE_PER_YEAR ** (year - base_year) * base_year_record.population).to_i
+  end
 
   def self.population_using_linear_progression(year)
     upper_population, upper_year = closest_upper_year_record(year)
