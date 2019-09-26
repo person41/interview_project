@@ -36,8 +36,13 @@ RSpec.describe PopulationsController, type: :controller do
       expect(response.body).not_to match /for: <script>alert/im
     end
 
-    it "records user's answer and query" do
-      year = "1945"
+    it "creates record user's answer and query" do
+      year = "1990"
+      expect(LogRecord).to receive(:create).with(ip: "0.0.0.0",
+                                                 year: Date.new(year.to_i),
+                                                 population: 248709873,
+                                                 exact: true).and_call_original
+
       expect { get(:show, params: { year: year }) }.to change { LogRecord.count }.by(1)
     end
   end

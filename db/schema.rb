@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_020433) do
+ActiveRecord::Schema.define(version: 2019_09_26_025732) do
 
   create_table "log_records", force: :cascade do |t|
     t.date "year"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_09_26_020433) do
     t.string "ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "exact"
   end
 
   create_table "populations", force: :cascade do |t|

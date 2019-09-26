@@ -5,6 +5,7 @@
     <tr>
       <th>Year</th>
       <th>Population</th>
+      <th>Population calculation</th>
       <th>Ip</th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
       <tr>
         <td><%= log_record.year %></td>
         <td><%= log_record.population %></td>
+        <td><%= log_record.exact? ? "exact" : "calculated" %></td>
         <td><%= log_record.ip %></td>
       </tr>
     <% end %>

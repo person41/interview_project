@@ -12,6 +12,11 @@ class PopulationsController < ApplicationController
   private
 
   def log_query_answer_pair
-    LogRecord.create(ip: request.ip, year: Date.new(@year), population: @population)
+    LogRecord.create(
+      ip: request.ip,
+      year: Date.new(@year),
+      population: @population,
+      exact: Population.find_by_year(Date.new(@year)).present?
+    )
   end
 end
