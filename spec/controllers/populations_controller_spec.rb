@@ -23,6 +23,13 @@ RSpec.describe PopulationsController, type: :controller do
       expect(response.body).to match /Population: #{Population.get(year)}/im
     end
 
+    it "returns a population for a date when invoked as xhr" do
+      year = 1900
+      get :show, params: { year: year }, xhr: true
+      expect(response.content_type).to eq "text/javascript"
+      expect(response.body).to match /Population: #{Population.get(year)}/im
+    end
+
     it "prevents rendering script tags" do
       year = "<script>alert('XSS')</script>"
       get :show, params: { year: year }
