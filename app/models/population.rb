@@ -1,7 +1,7 @@
 class Population < ApplicationRecord
 
   def self.min_year
-    Population.all.map(&:year).min.year
+    Population.minimum("year").year
   end
 
   def self.max_year
