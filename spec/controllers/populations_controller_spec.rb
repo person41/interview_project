@@ -36,6 +36,20 @@ RSpec.describe PopulationsController, type: :controller do
       expect(response.body).not_to match /for: <script>alert/im
     end
 
+    it "calls population calculation method with exponential method" do
+      year = 2005
+      expect(Population).to receive(:get).with(year, :exponential)
+      get :show, params: { year: year, calculation_method: "exponential" }, xhr: true
+      expect(response).to have_http_status(:success)
+    end
+
+    it "calls population calculation method with logistic method" do
+      year = 2005
+      expect(Population).to receive(:get).with(year, :logistic)
+      get :show, params: { year: year, calculation_method: "logistic" }, xhr: true
+      expect(response).to have_http_status(:success)
+    end
+
     it "creates record user's answer and query" do
       year = "1990"
       expect(LogRecord).to receive(:create).with(ip: "0.0.0.0",

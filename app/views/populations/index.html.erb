@@ -2,6 +2,13 @@
 <%= form_tag populations_by_year_path, method: :get, remote: true do %>
   <input name="year" />
   <button type="submit">Submit</button>
+  <div id="calculationMethodBoxes">
+    <input type="radio" name="calculation_method" id="calcLogistic" value="logistic" checked/>
+    <label for="calcLogistic">Logistic</label>
+
+    <input type="radio" name="calculation_method" id="calcExponential" value="exponential" />
+    <label for="calcExponential">Exponential</label>
+  </div>
 <% end %>
 
 <div id="results">

@@ -6,7 +6,8 @@ class PopulationsController < ApplicationController
 
   def show
     @year = params[:year].to_i
-    @population = Population.get(@year)
+    @method = params[:calculation_method] == "exponential" ? :exponential : :logistic
+    @population = Population.get(@year, @method)
   end
 
   private

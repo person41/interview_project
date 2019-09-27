@@ -23,6 +23,12 @@ RSpec.describe Population, type: :model do
     expect(Population.get(1993)).to eq(322086498)
   end
 
+  it "should accept a year that is after latest known and reutnr result based on logistic growth by passing second argument" do
+    expect(Population.get(1991, :logistic)).to eq(263670969)
+    expect(Population.get(1993, :logistic)).to eq(294829102)
+    expect(Population.get(2300, :logistic)).to eq(749999999)
+  end
+
   it "should accept a year that is after 2500 and return the result for 2500" do
     expect(Population.get(200000)).to eq(Population.get(2500))
   end
