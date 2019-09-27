@@ -1,6 +1,6 @@
 <h1>The Logz</h1>
 
-<table>
+<table id="log_records_table" data-logs-path="<%= the_logz_path(:js) %>">
   <thead>
     <tr>
       <th>Year</th>
@@ -11,18 +11,11 @@
   </thead>
 
   <tbody>
-    <% @log_records.each do |log_record| %>
-      <tr>
-        <td><%= log_record.year %></td>
-        <td><%= log_record.population %></td>
-        <td><%= log_record.exact? ? "exact" : "calculated" %></td>
-        <td><%= log_record.ip %></td>
-      </tr>
-    <% end %>
+    <%= render 'table' %>
   </tbody>
 </table>
 
-<table>
+<table id="rank_table">
   <thead>
     <tr>
       <th>Year</th>
@@ -31,11 +24,6 @@
   </thead>
 
   <tbody>
-    <% @requests_by_year.each do |req| %>
-      <tr>
-        <td><%= req.year %></td>
-        <td><%= req.request_count %></td>
-      </tr>
-    <% end %>
+    <%= render 'rank_table' %>
   </tbody>
 </table>

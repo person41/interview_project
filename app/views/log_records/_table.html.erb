@@ -1,0 +1,9 @@
+<% @log_records.each do |log_record| %>
+  <tr>
+    <td><%= log_record.year %></td>
+    <td><%= log_record.population %></td>
+    <td><%= log_record.exact? ? "exact" : "calculated" %></td>
+    <td><%= log_record.ip %></td>
+  </tr>
+<% end %>
+
